@@ -3,10 +3,41 @@
   width: 100%;
   overflow-x: hidden;
 }
+body{
+  background: #F8F9FB;
+}
+ul li a{
+  box-sizing: border-box;
+  @apply px-6 py-3 rounded-4xl transition-all duration-300 bg-gray-200 text-gray-500;
+}
+ul li a:hover{
+  @apply bg-white/50 text-black;
+}
+ul .active{
+  @apply bg-black! text-white!;
+}
 .hero{
   background-image: url('assets/hero.jpeg');
   width: 100%;
   height: 100vh;
+  background-size: cover;
+  background-position: center; 
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+.bg_auth{
+  background-image: url('assets/bg-auth.jpeg');
+  width: 100%;
+  /* height: 100vh;  */
+  background-size: cover;
+  background-position: center; 
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+.bg{
+  background-image: url('assets/bg.jpeg');
+  width: 100%;
+  /* height: 100vh;  */
   background-size: cover;
   background-position: center; 
   background-attachment: fixed;
@@ -51,5 +82,60 @@
   100% {
     background-position: 0% 50%;
   }
+}
+
+/* Estilos personalizados para scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgb(107, 114, 128);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(156, 163, 175);
+}
+
+/* Ocultar las flechas del scrollbar */
+.custom-scrollbar::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:start:decrement,
+.custom-scrollbar::-webkit-scrollbar-button:end:increment {
+  display: none;
+}
+
+/* Para Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(107, 114, 128) transparent;
+}
+
+.loader {
+  height: 50px;
+  aspect-ratio: 2;
+  border: 10px solid #ffffff;
+  box-sizing: border-box;
+  background: 
+    radial-gradient(farthest-side,#000000 98%,#ffffff00) left/20px 20px,
+    radial-gradient(farthest-side,#000000 98%,#ffffff00) left/20px 20px,
+    radial-gradient(farthest-side,#000000 98%,#ffffff00) center/20px 20px,
+    radial-gradient(farthest-side,#000000 98%,#ffffff00) right/20px 20px,
+    #ffffff;
+  background-repeat: no-repeat;
+  filter: blur(4px) contrast(10);
+  animation: l14 1s infinite;
+}
+@keyframes l14 {
+  100%  {background-position:right,left,center,right}
 }
 

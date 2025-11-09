@@ -8,6 +8,9 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import EquipoContainer from './container/EquipoContainer'
 import DeportistaContainer from './container/DeportistaContainer'
 import EventoContainer from './container/EventoContainer'
+import AuthContainer from './container/AuthContainer'
+import UsuarioContainer from './container/UsuarioContainer'
+import AuthenticatedContainer from './container/AuthenticatedContainer'
 
 function App() {
   return (
@@ -21,6 +24,10 @@ function App() {
             <Route path='/competicion' element={<CompeticionContainer />} />
             <Route path='/deportista' element={<DeportistaContainer />} />
             <Route path='/equipo' element={<EquipoContainer />} />
+            <Route path='/auth' element={<AuthContainer />} />
+            <Route path='/usuario' element={<AuthenticatedContainer />}>
+              <Route path='/usuario' element={<UsuarioContainer />} />
+            </Route>
           </Routes>
         </BrowserRouter>
 

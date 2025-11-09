@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = `${process.env.NEXT_PUBLIC_URI_API}v1/auth`;
+const url = `${import.meta.env.VITE_API_URL}/auth`;
 
 const API = axios.create({
     baseURL: url,
@@ -17,11 +17,11 @@ API.interceptors.request.use((config) => {
 
 const authServices = {
     login: async (data) =>{
-        const response = await API.post(`auth/login`, data);
-        localStorage.setItem('token', response.data.data.token);
+        const response = await API.post(`/login`, data);
+        return response.data;
     },
     signUp: async (data) => {
-        const response = await API.post(`auth/registro`, data);
+        const response = await API.post(`/registro`, data);
         localStorage.setItem('token', response.data.data.token);
     }
 }

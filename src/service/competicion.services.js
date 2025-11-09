@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = `http://localhost:3001/v1/competicion`;
+const url = `${import.meta.env.VITE_API_URL}/competicion`;
 
 const API = axios.create({
     baseURL: url,

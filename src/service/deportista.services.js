@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = `${process.env.NEXT_PUBLIC_URI_API}v1/deportista`;
+const url = `${import.meta.env.VITE_API_URL}/deportista`;
 
 const API = axios.create({
     baseURL: url,

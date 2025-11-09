@@ -1,8 +1,10 @@
 const BentoCard = ({ title, children, size }) => {
     return (
-        <div className={`bg-black/50 border border-white/10 backdrop-blur-md p-6 rounded-2xl flex flex-col  ${size} transition-all hover:scale-102 duration-300` }>
-            {title? <h3 className="font-semibold mb-3">{title}</h3> : ''}
-            {children}
+        <div className={`bg-white   backdrop-blur-xs p-6 rounded-4xl flex flex-col min-h-0 ${size} overflow-hidden` }>
+            {title? <h3 className="font-bold text-lg mb-3 shrink-0">{title}</h3> : ''}
+            <div className="flex-1 flex flex-col min-h-0">
+                {children}
+            </div>
         </div>
     )
 }

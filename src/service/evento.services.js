@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = `${process.env.NEXT_PUBLIC_URI_API}v1/evento`;
+const url = `${import.meta.env.VITE_API_URL}/evento`;
 
 const API = axios.create({
     baseURL: url,

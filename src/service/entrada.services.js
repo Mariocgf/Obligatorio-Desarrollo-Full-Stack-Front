@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = `${process.env.NEXT_PUBLIC_URI_API}v1/entrada`;
+const url = `${import.meta.env.VITE_API_URL}/entrada`;
 
 const API = axios.create({
     baseURL: url,

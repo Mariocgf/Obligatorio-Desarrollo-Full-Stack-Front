@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = `${process.env.NEXT_PUBLIC_URI_API}v1/usuario`;
+const url = `${import.meta.env.VITE_API_URL}/usuario`;
 
 const API = axios.create({
     baseURL: url,
@@ -22,6 +22,14 @@ const usuarioServices = {
     },
     registerCambioPlan: async (data) => {
         const response = await API.post('/cambio-plan', data);
+        return response.data;
+    },
+    getUsuarioBasicInfo: async () => {
+        const response = await API.get('/basic-info');
+        return response.data;
+    },
+    validarToken: async () => {
+        const response = await API.get('/validar-token');
         return response.data;
     }
 }
