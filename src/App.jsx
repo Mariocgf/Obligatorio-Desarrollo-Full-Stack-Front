@@ -11,6 +11,7 @@ import EventoContainer from './container/EventoContainer'
 import AuthContainer from './container/AuthContainer'
 import UsuarioContainer from './container/UsuarioContainer'
 import AuthenticatedContainer from './container/AuthenticatedContainer'
+import ProtectedContainer from './container/ProtectedContainer'
 
 function App() {
   return (
@@ -19,14 +20,16 @@ function App() {
         <BrowserRouter>
           <NavBar />
           <Routes>
-            <Route path='/' element={<HomeContainer />} />
-            <Route path='/eventos' element={<EventoContainer />} />
-            <Route path='/competicion' element={<CompeticionContainer />} />
-            <Route path='/deportista' element={<DeportistaContainer />} />
-            <Route path='/equipo' element={<EquipoContainer />} />
-            <Route path='/auth' element={<AuthContainer />} />
-            <Route path='/usuario' element={<AuthenticatedContainer />}>
-              <Route path='/usuario' element={<UsuarioContainer />} />
+            <Route path='/' element={<AuthenticatedContainer />}>
+              <Route path='/' element={<HomeContainer />} />
+              <Route path='/eventos' element={<EventoContainer />} />
+              <Route path='/competicion' element={<CompeticionContainer />} />
+              <Route path='/deportista' element={<DeportistaContainer />} />
+              <Route path='/equipo' element={<EquipoContainer />} />
+              <Route path='/auth' element={<AuthContainer />} />
+              <Route path='/usuario' element={<ProtectedContainer />} >
+                <Route path='/usuario' element={<UsuarioContainer />} />
+              </Route>
             </Route>
           </Routes>
         </BrowserRouter>

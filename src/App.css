@@ -139,3 +139,34 @@ ul .active{
   100%  {background-position:right,left,center,right}
 }
 
+/* Animación ping pequeña para botón de confirmación */
+@keyframes ping-small {
+  75%, 100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+.animate-ping-small {
+  animation: ping-small 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.bg-competicion{
+  background-image: url('assets/bg-competicion.jpeg');
+  width: 100%;
+  /* height: 100vh;  */
+  background-size: cover;
+  background-position: center; 
+  background-repeat: no-repeat;
+}
+
+.bg-auth{
+  background-image: url('assets/test.jpg');
+  width: 100%;
+  /* height: 100vh;  */
+  background-size: cover;
+  background-position: center; 
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  /* @apply mask-b-from-0% mask-b-to-30% ; */
+}

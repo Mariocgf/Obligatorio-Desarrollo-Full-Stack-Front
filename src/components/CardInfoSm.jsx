@@ -2,9 +2,9 @@ const CardInfoSm = ({elem}) => {
     return (
         <div
             key={elem._id}
-            className="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden cursor-pointer hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-in-out"
+            className="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden cursor-pointer hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-in-out bg-competicion" 
         >
-            <div className="aspect-square overflow-hidden bg-linear-to-br from-blue-50 to-purple-50">
+            <div className="aspect-square overflow-hidden ">
                 <img
                     src={elem.img}
                     alt={elem.nombre}

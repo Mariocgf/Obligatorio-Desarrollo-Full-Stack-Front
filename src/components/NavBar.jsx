@@ -29,7 +29,7 @@ const NavBar = () => {
                 </ul>
                 {user?
                     <Link to="/usuario" className="bg-black/25 hover:bg-gray-950 hover:scale-105 transition-all duration-300 w-fit rounded-full overflow-hidden">
-                        <img src={user?.imgURI} alt="Usuario" className="w-10 h-10 lg:w-12 lg:h-12 object-cover" />
+                        <img src={user?.img} alt="Usuario" className="w-10 h-10 lg:w-12 lg:h-12 object-cover" />
                     </Link>
                     :
                     <NavLink to="/auth" className="bg-gray-950 text-white px-4 lg:px-6 py-2 lg:py-3 rounded-4xl hover:scale-105 transition-all duration-300 text-sm lg:text-base whitespace-nowrap">Empieza ahora!</NavLink>

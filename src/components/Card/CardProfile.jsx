@@ -20,7 +20,7 @@ const CardProfile = ({ imgSrc, title, size }) => {
     return (
         <div className={`bg-white rounded-4xl ${size ? size : 'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-120'} overflow-hidden relative`}>
             <img src={imgSrc} alt="" className="w-full h-full object-cover absolute inset-0" />
-            <div className={`bg-white/25 backdrop-blur-md rounded-4xl text-white p-4 sm:p-6 md:p-8 absolute bottom-0 w-full `}>
+            <div className={`bg-black/25 backdrop-blur-md rounded-4xl text-white p-4 sm:p-6 md:p-8 absolute bottom-0 w-full `}>
                 <div className="flex justify-between items-center">
                     <p className="text-sm sm:text-base md:text-lg font-semibold sm:pr-4 sm:mr-4">{title}</p>
                     <div className="flex gap-4">

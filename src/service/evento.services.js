@@ -27,6 +27,10 @@ const eventoServices = {
     obtenerEventoXTipo: async (tipo) => {
         const response = await API.get(`/${tipo}`);
         return response.data;
+    },
+    obtenerEventoSelect: async () => {
+        const response = await API.get('/select');
+        return response.data;
     }
 }
 

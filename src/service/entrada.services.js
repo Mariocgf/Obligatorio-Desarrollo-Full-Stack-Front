@@ -32,7 +32,7 @@ const entradaServices = {
         const response = await API.delete(`/${id}`);
         return response.data;
     },
-    modificarEntrada: async (id, data) => {
+    cambiarEntrada: async (id, data) => {
         const response = await API.patch(`/${id}`, data);
         return response.data;
     }
