@@ -2,7 +2,7 @@ import ButtonPrimary from "../Button/ButtonPrimary";
 import Check from "../../assets/interface/check.svg?react";
 
 
-const CardFollow = ({id, imgSrc, title, className, size, isFollow =false, handlerSeguir }) => {
+const CardFollow = ({id, imgSrc, title, className, size, isFollow =false, handlerSeguir={handlerSeguir} }) => {
     const handlerOnClick = () => {
         handlerSeguir(id);
     }

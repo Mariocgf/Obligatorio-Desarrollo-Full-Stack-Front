@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = `${import.meta.env.VITE_API_URL}/equipo`;
+const url = `${import.meta.env.VITE_API_URL}/equipos`;
 
 const API = axios.create({
     baseURL: url,
