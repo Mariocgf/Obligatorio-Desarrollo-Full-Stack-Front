@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import eventoServices from "../service/evento.services";
-import CardEvent from "../components/card/CardEvent";
+import CardEvent from "../components/Card/CardEvent";
 import Loader from "../components/Loader";
 
 
