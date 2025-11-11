@@ -23,6 +23,12 @@ const equipoServices = {
     obtenerEquipo: async (id) => {
         const response = await API.get(`/${id}`);
         return response.data;
+    },
+    seguirEquipo: async (id) => {
+        console.log(localStorage.getItem("token"));
+        const response = await API.post(`/seguir/${id}`);
+        
+        return response.data;
     }
 }
 

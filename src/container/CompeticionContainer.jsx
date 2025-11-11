@@ -4,25 +4,25 @@ import Loader from "../components/Loader";
 import CardImgInfo from "../components/Card/CardImgInfo";
 
 const CompeticionContainer = () => {
-    const [competiciones, setCompeticiones] = useState([]); // Estado para almacenar las competiciones
-    const [loading, setLoading] = useState(true); // Estado para controlar la carga
+    const [competiciones, setCompeticiones] = useState([]); 
+    const [loading, setLoading] = useState(true); 
     const obtenerCompeticiones = async () => {
-        setLoading(true); // Inicio del loading
+        setLoading(true); 
         try {
-            const response = await competicionServices.obtenerCompeticiones(); // Llamada al servicio de competicionServices y utilizo el método obtenerCompeticiones
-            setCompeticiones(response.data); // Actualizo el estado con los datos obtenidos
+            const response = await competicionServices.obtenerCompeticiones(); 
+            setCompeticiones(response.data);
         } catch (error) {
             console.error("Error al obtener competiciones:", error);
         } finally {
-            setLoading(false); // Fin del loading
+            setLoading(false); 
         }
     };
     useEffect(() => {
-        obtenerCompeticiones(); // Llamo a la función para obtener las competiciones cuando el componente se monta
+        obtenerCompeticiones(); 
     }, []);
     if (loading) return <Loader />;
     return (
-        <main className="min-h-[calc(100vh-4rem)]  pt-24 px-6 md:px-20 lg:px-40 py-8">
+        <main className="min-h-[calc(100vh-4rem)] pt-24 px-6 md:px-20 lg:px-40 py-8">
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                     Competiciones

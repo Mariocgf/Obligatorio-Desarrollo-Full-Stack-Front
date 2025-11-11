@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import eventoServices from "../service/evento.services";
-import CardInfoSm from "../components/CardInfoSm";
+import CardEvent from "../components/card/CardEvent";
 import Loader from "../components/Loader";
 
 
@@ -23,14 +23,14 @@ const EventoContainer = () => {
     }, []);
     if (loading) return <Loader />;
     return (
-        <main className="min-h-[calc(100vh-4rem)] mt-16 px-6 md:px-20 lg:px-40 py-8">
+        <main className="min-h-[calc(100vh-4rem)] pt-24 px-6 md:px-20 lg:px-40 py-8">
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                     Eventos
                 </h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {eventos.map((evento) => (
-                        <CardInfoSm key={evento._id} elem={evento} />
+                        <CardEvent key={evento._id} imgSrc={evento.img} title={evento.nombre} className={'bg-evento'} size={'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-120'}/>
                     ))}
                 </div>
                 {eventos.length === 0 && (
