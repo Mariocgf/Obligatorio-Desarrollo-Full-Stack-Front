@@ -24,7 +24,7 @@ const CardProfile = ({ imgSrc, title, size }) => {
                 <div className="flex justify-between items-center">
                     <p className="text-sm sm:text-base md:text-lg font-semibold sm:pr-4 sm:mr-4">{title}</p>
                     <div className="flex gap-4">
-                        <Link to="/perfil" className="bg-gray-950 text-white p-3  rounded-4xl w-fit justify-self-start sm:justify-self-end self-center"><ChangeImg className="w-5 h-5 fill-white" /></Link>
+                        <Link to="/usuario/updateImg" className="bg-gray-950 text-white p-3  rounded-4xl w-fit justify-self-start sm:justify-self-end self-center"><ChangeImg className="w-5 h-5 fill-white" /></Link>
                         <button className="bg-red-500 text-white p-3  rounded-4xl w-fit justify-self-start sm:justify-self-end self-center cursor-pointer" onClick={logOut}><LogOutSvg className="w-5 h-5 fill-white" /></button>
                     </div>
                 </div>

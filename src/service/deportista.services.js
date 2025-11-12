@@ -31,6 +31,10 @@ const deportistaServices = {
     obtenerDeportistasXCompeticion: async (id) => {
         const response = await API.get(`/competicion/${id}`);
         return response.data;
+    },
+    seguirDeportista: async (id) => {
+        const response = await API.post(`/seguir/${id}`);
+        return response.data;
     }
 }
 

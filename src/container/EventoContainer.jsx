@@ -30,7 +30,7 @@ const EventoContainer = () => {
                 </h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {eventos.map((evento) => (
-                        <CardEvent key={evento._id} imgSrc={evento.img} title={evento.nombre} className={'bg-evento'} size={'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-120'}/>
+                        <CardEvent key={evento._id} imgSrc={evento.img} title={evento.nombre} className={'bg-evento'} size={'w-full lg:w-full h-80 md:h-96 lg:h-120'}/>
                     ))}
                 </div>
                 {eventos.length === 0 && (

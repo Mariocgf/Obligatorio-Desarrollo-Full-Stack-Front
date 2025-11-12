@@ -14,6 +14,10 @@ import CardProfile from "../components/Card/CardProfile";
 import eventoServices from "../service/evento.services";
 import entradaServices from "../service/entrada.services";
 import Form from "../components/Form/Form";
+import toast from "react-hot-toast";
+
+import { Doughnut } from 'react-chartjs-2';
+import  Grafica  from "../components/Grafica";
 
 const UsuarioContainer = () => {
     const [loading, setLoading] = useState(true);
@@ -21,8 +25,6 @@ const UsuarioContainer = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.user.usuario);
-
-
 
     const getUsuarioInfo = async () => {
         setLoading(true);
@@ -51,16 +53,14 @@ const UsuarioContainer = () => {
     };
 
     const handleComprarEntrada = async (evento) => {
-        console.log('entre');
-        
         try {
             const response = await entradaServices.altaEntrada(evento);
-            console.log("Entrada comprada:", response.data);
             const nuevaEntrada = response.data;
             const updatedUser = { ...user, entradas: [...user.entradas, nuevaEntrada] };
             dispatch(cargarUsuarioInfo(updatedUser));
+            toast.success("Entrada comprada con éxito");
         } catch (error) {
-            console.error("Error al comprar entrada:", error);
+            toast.error(error.response.data.data.message || "Error al comprar entrada");
         }
     };
     const handleCambiarEntrada = async (data) => {
@@ -68,14 +68,14 @@ const UsuarioContainer = () => {
 
         try {
             const response = await entradaServices.cambiarEntrada(data.entrada, { evento: data.evento });
-            console.log("Entrada cambiada:", response.data);
             const updatedEntradas = user.entradas.map(entrada =>
                 entrada._id === data.entrada ? response.data : entrada
             );
             const updatedUser = { ...user, entradas: updatedEntradas };
             dispatch(cargarUsuarioInfo(updatedUser));
+            toast.success("Entrada cambiada con éxito");
         } catch (error) {
-            console.error("Error al cambiar entrada:", error.response.data);
+            toast.error(error.response.data.data.message || "Error al cambiar entrada");
         }
     };
 
@@ -85,7 +85,7 @@ const UsuarioContainer = () => {
     }, [user]);
     if (loading) return <Loader />;
     return (
-        <main className="min-h-[calc(100vh-4rem)] xl:h-[calc(100vh-4rem)] bgs pt-20 px-6 md:px-20 lg:px-40 py-8 flex flex-col overflow-hidden">
+        <main className="min-h-[calc(100vh-0rem)] xl:h-[calc(100vh-0rem)] pt-20 px-6 md:px-20 lg:px-40  flex flex-col overflow-hidden">
             <h1 className="text-4xl font-bold mb-4 shrink-0">Dashboard</h1>
             <section className="grid grid-cols-1 xl:grid-cols-4 grid-rows-auto gap-4 flex-1 mb-8 min-h-0">
                 <CardProfile imgSrc={user?.img} title={`${user?.nombre} ${user?.apellido}`} size={'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-64'} />
@@ -97,8 +97,8 @@ const UsuarioContainer = () => {
                     {user?.plan?.tipo === 'Plus' && <ButtonPrimary>Actualizar Plan</ButtonPrimary>}
 
                 </BentoCard>
-                <CardImgInfoLink imgSrc="https://upload.wikimedia.org/wikipedia/sco/5/56/Real_Madrid_CF.svg" title={`Real Madrid`} description={'Equipo favorito'} size={'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-64'} />
-                <CardImgInfoLink imgSrc="https://assets.laliga.com/squad/2025/t186/p244855/2048x2048/p244855_t186_2025_1_003_000.png" title={`Jude Bellingham`} description={'Jugador Favorito'} size={'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-64'} />
+                <CardImgInfoLink imgSrc={user?.equipoSeguido?.img || 'https://blocks.astratic.com/img/general-img-landscape.png'} title={user?.equipoSeguido?.nombre || 'Aun no sigues ningun equipo'} description={'Equipo favorito'} size={'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-64'} />
+                <CardImgInfoLink imgSrc={user?.deportistaSeguido?.img || 'https://blocks.astratic.com/img/general-img-landscape.png'} title={user?.deportistaSeguido?.nombre || 'Aun no sigues ningun deportista'} description={'Deportista favorito'} size={'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-64'} />
                 <BentoCard size="" title="Entradas">
                     <div className="overflow-y-auto h-full pr-2 custom-scrollbar">
                         <div className="grid grid-cols-1  gap-4">
@@ -155,6 +155,9 @@ const UsuarioContainer = () => {
                         button="Cambiar Entrada"
                         confirm={true}
                     />
+                </BentoCard>
+                <BentoCard size="" title="Estadísticas de equipo">
+                    <Grafica />
                 </BentoCard>
             </section>
         </main>

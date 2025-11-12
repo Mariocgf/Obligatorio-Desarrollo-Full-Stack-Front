@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { cargarUsuarioInfo } from "../features/usuarioInfo.slice";
+import toast from "react-hot-toast";
 
 
 const EquipoContainer = () => {
@@ -19,13 +20,12 @@ const EquipoContainer = () => {
             navigate('/auth');
         try {
             const response = await equipoServices.seguirEquipo(id);
-            if (response.data.nombre === user?.equipoSeguido?.nombre)
-                throw new Error("Ya sigues este equipo");
             const updatedUser = { ...user, equipoSeguido: response.data };
             dispatch(cargarUsuarioInfo(updatedUser));
             console.log("Siguiendo equipo:", response.data);
         } catch (error) {
             console.error(error);
+            toast.error(error.response.data.data.message || "Error al seguir equipo");
         }
     }
 

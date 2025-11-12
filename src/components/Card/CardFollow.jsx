@@ -7,7 +7,7 @@ const CardFollow = ({id, imgSrc, title, className, size, isFollow =false, handle
         handlerSeguir(id);
     }
     return (
-        <div className={`bg-white rounded-4xl ${className} ${size ? size : 'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-120'} overflow-hidden relative`}>
+        <div className={`bg-white rounded-4xl ${className} ${size ? size : 'w-full lg:w-full h-90 md:h-96 lg:h-120'} overflow-hidden relative`}>
             <img src={imgSrc} alt="" className="w-full h-full object-cover absolute inset-0" />
 
                 <div className={`bg-black/25 backdrop-blur-md rounded-4xl text-white p-4 sm:p-6 md:p-8 absolute bottom-0 w-full `}>
