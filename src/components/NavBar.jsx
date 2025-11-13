@@ -1,9 +1,10 @@
 import {  useState } from 'react';
 import { useSelector } from 'react-redux';
-
 import { Link, NavLink } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 const NavBar = () => {
+    const { t } = useTranslation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const user = useSelector((state) => state.user.usuario);
     
@@ -12,19 +13,19 @@ const NavBar = () => {
         <nav className="w-full px-3 sm:px-4 md:px-10 lg:px-10 fixed z-50 backdrop-blur-md bg-white/10 py-2 sm:py-3 rounded-4xl">
             {/* Diseño desktop y tablet */}
             <div className="hidden md:flex justify-evenly gap-4 lg:gap-16 items-center">
-                <NavLink to="/" className="text-xl lg:text-2xl font-bold whitespace-nowrap">Sportify</NavLink>
+                <NavLink to="/" className="text-xl lg:text-2xl font-bold whitespace-nowrap">{t('nav.brand')}</NavLink>
                 <ul className="flex ">
                     <li className="inline-block">
-                        <NavLink to="/eventos" >Eventos</NavLink>
+                        <NavLink to="/eventos" >{t('nav.events')}</NavLink>
                     </li>
                     <li className="inline-block">
-                        <NavLink to="/competicion" >Competiciones</NavLink>
+                        <NavLink to="/competicion" >{t('nav.competitions')}</NavLink>
                     </li>
                     <li className="inline-block">
-                        <NavLink to="/deportista" >Deportistas</NavLink>
+                        <NavLink to="/deportista" >{t('nav.athletes')}</NavLink>
                     </li>
                     <li className="inline-block">
-                        <NavLink to="/equipo" >Equipos</NavLink>
+                        <NavLink to="/equipo" >{t('nav.teams')}</NavLink>
                     </li>
                 </ul>
                 {user?
@@ -32,19 +33,19 @@ const NavBar = () => {
                         <img src={user?.img} alt="Usuario" className="w-10 h-10 lg:w-12 lg:h-12 object-cover" />
                     </Link>
                     :
-                    <NavLink to="/auth" className="bg-gray-950 text-white px-4 lg:px-6 py-2 lg:py-3 rounded-4xl hover:scale-105 transition-all duration-300 text-sm lg:text-base whitespace-nowrap">Empieza ahora!</NavLink>
+                    <NavLink to="/auth" className="bg-gray-950 text-white px-4 lg:px-6 py-2 lg:py-3 rounded-4xl hover:scale-105 transition-all duration-300 text-sm lg:text-base whitespace-nowrap">{t('nav.getStarted')}</NavLink>
                 }
             </div>
 
             {/* Diseño móvil */}
             <div className="md:hidden">
                 <div className="flex justify-between items-center">
-                    <NavLink to="/" className="text-xl sm:text-2xl font-bold">Sportify</NavLink>
+                    <NavLink to="/" className="text-xl sm:text-2xl font-bold">{t('nav.brand')}</NavLink>
 
                     <button
                         className="bg-gray-950/90 backdrop-blur-md p-2.5 sm:p-3 rounded-2xl text-white hover:bg-gray-950 transition-all duration-300 hover:scale-105 active:scale-95"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+                        aria-label={isMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
                     >
                         <svg
                             className="w-5 h-5 sm:w-6 sm:h-6"
@@ -73,16 +74,16 @@ const NavBar = () => {
                     <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-4 sm:p-5 shadow-2xl border border-gray-200/50">
                         <ul className="flex flex-col gap-2 mb-4">
                             <li>
-                                <NavLink to="/eventos" onClick={() => setIsMenuOpen(false)} className="block border border-black/10">Eventos</NavLink>
+                                <NavLink to="/eventos" onClick={() => setIsMenuOpen(false)} className="block border border-black/10">{t('nav.events')}</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/competicion" onClick={() => setIsMenuOpen(false)} className="block border border-black/10">Competiciones</NavLink>
+                                <NavLink to="/competicion" onClick={() => setIsMenuOpen(false)} className="block border border-black/10">{t('nav.competitions')}</NavLink>
                             </li>
                             <li className=''>
-                                <NavLink to="/deportista" onClick={() => setIsMenuOpen(false)} className="block border border-black/10">Deportistas</NavLink>
+                                <NavLink to="/deportista" onClick={() => setIsMenuOpen(false)} className="block border border-black/10">{t('nav.athletes')}</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/equipo" onClick={() => setIsMenuOpen(false)} className="block border border-black/10">Equipos</NavLink>
+                                <NavLink to="/equipo" onClick={() => setIsMenuOpen(false)} className="block border border-black/10">{t('nav.teams')}</NavLink>
                             </li>
                         </ul>
                         
@@ -98,7 +99,7 @@ const NavBar = () => {
                                         alt="Usuario" 
                                         className="w-10 h-10 rounded-full border-2 border-white/20" 
                                     />
-                                    <span className="font-medium text-sm sm:text-base">Mi Perfil</span>
+                                    <span className="font-medium text-sm sm:text-base">{t('nav.myProfile')}</span>
                                 </Link>
                             ) : (
                                 <NavLink 
@@ -106,7 +107,7 @@ const NavBar = () => {
                                     onClick={() => setIsMenuOpen(false)}
                                     className="block bg-gradient-to-r from-gray-900 to-gray-950 text-white text-center py-3 px-4 rounded-2xl font-semibold hover:from-gray-800 hover:to-gray-900 transition-all duration-300 active:scale-95 shadow-lg text-sm sm:text-base"
                                 >
-                                    Empieza ahora!
+                                    {t('nav.getStarted')}
                                 </NavLink>
                             )}
                         </div>

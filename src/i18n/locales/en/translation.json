@@ -1,0 +1,84 @@
+{
+    "home": {
+        "hero": {
+            "title": "Follow your favorite teams, athletes, and buy tickets to see them",
+            "competitions": "Competitions",
+            "athletes": "Athletes",
+            "teams": "Teams",
+            "events": "Events",
+            "joinUs": "join our platform",
+            "joinUsDescription": "& start enjoying"
+        },
+        "features": {
+            "title": "Features & services",
+            "statistics": {
+                "title": "Statistics",
+                "description": "Access complete information about team performance."
+            },
+            "tickets": {
+                "title": "Tickets",
+                "description": "Buy tickets for events from different competitions."
+            },
+            "dates": {
+                "title": "Dates",
+                "description": "Access complete information about match and event dates."
+            },
+            "sports": {
+                "title": "Sports",
+                "description": "We have a wide variety of competitions and athletes."
+            }
+        },
+        "banner": {
+            "title": "Join our community",
+            "description": "Access complete information about team performance and sports competitions.",
+            "cta": "Get started now!"
+        }
+    },
+    "nav": {
+        "brand": "Sportify",
+        "events": "Events",
+        "competitions": "Competitions",
+        "athletes": "Athletes",
+        "teams": "Teams",
+        "getStarted": "Get started now!",
+        "myProfile": "My Profile",
+        "openMenu": "Open menu",
+        "closeMenu": "Close menu"
+    },
+    "footer": {
+        "brand": {
+            "name": "Sportify",
+            "description": "Your sports platform to follow your favorite teams and athletes. Buy tickets and live the excitement of sports."
+        },
+        "quickLinks": {
+            "title": "Quick Links",
+            "events": "Events",
+            "competitions": "Competitions",
+            "athletes": "Athletes",
+            "teams": "Teams"
+        },
+        "information": {
+            "title": "Information",
+            "aboutUs": "About Us",
+            "faq": "Frequently Asked Questions",
+            "contact": "Contact Us",
+            "help": "Help"
+        },
+        "legal": {
+            "title": "Legal",
+            "terms": "Terms and Conditions",
+            "privacy": "Privacy Policy",
+            "cookies": "Cookie Policy",
+            "legalNotice": "Legal Notice"
+        },
+        "newsletter": {
+            "title": "Stay Updated",
+            "description": "Subscribe to receive the latest news and offers",
+            "placeholder": "Your email address",
+            "subscribe": "Subscribe"
+        },
+        "copyright": "All rights reserved.",
+        "accessibility": "Accessibility",
+        "sitemap": "Site Map"
+    }
+}

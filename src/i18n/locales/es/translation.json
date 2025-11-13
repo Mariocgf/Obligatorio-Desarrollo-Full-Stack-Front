@@ -1,0 +1,84 @@
+{
+    "home": {
+        "hero": {
+            "title": "Sigue a tus equipos, deportistas favoritos, y compra entradas para verlos",
+            "competitions": "Competiciones",
+            "athletes": "Deportistas",
+            "teams": "Equipos",
+            "events": "Eventos",
+            "joinUs": "únete a nuestra plataforma",
+            "joinUsDescription": "& empieza a disfrutar"
+        },
+        "features": {
+            "title": "Caracteristicas & servicios",
+            "statistics": {
+                "title": "Estadisticas",
+                "description": "Accede a información completa sobre rendimiento de equipos."
+            },
+            "tickets": {
+                "title": "Entradas",
+                "description": "Compra entradas para los eventos de las distintas competiciones."
+            },
+            "dates": {
+                "title": "Fechas",
+                "description": "Accede a información completa sobre fechas de partidos y eventos."
+            },
+            "sports": {
+                "title": "Deportes",
+                "description": "Contamos con alta variedad de competiciones y deportistas."
+            }
+        },
+        "banner": {
+            "title": "Unete a nuestra comunidad",
+            "description": "Accede a información completa sobre rendimiento de equipos y competiciones deportivas.",
+            "cta": "Empieza ahora!"
+        }
+    },
+    "nav": {
+        "brand": "Sportify",
+        "events": "Eventos",
+        "competitions": "Competiciones",
+        "athletes": "Deportistas",
+        "teams": "Equipos",
+        "getStarted": "Empieza ahora!",
+        "myProfile": "Mi Perfil",
+        "openMenu": "Abrir menú",
+        "closeMenu": "Cerrar menú"
+    },
+    "footer": {
+        "brand": {
+            "name": "Sportify",
+            "description": "Tu plataforma deportiva para seguir a tus equipos y deportistas favoritos. Compra entradas y vive la emoción del deporte."
+        },
+        "quickLinks": {
+            "title": "Enlaces Rápidos",
+            "events": "Eventos",
+            "competitions": "Competiciones",
+            "athletes": "Deportistas",
+            "teams": "Equipos"
+        },
+        "information": {
+            "title": "Información",
+            "aboutUs": "Sobre Nosotros",
+            "faq": "Preguntas Frecuentes",
+            "contact": "Contáctanos",
+            "help": "Ayuda"
+        },
+        "legal": {
+            "title": "Legal",
+            "terms": "Términos y Condiciones",
+            "privacy": "Política de Privacidad",
+            "cookies": "Política de Cookies",
+            "legalNotice": "Aviso Legal"
+        },
+        "newsletter": {
+            "title": "Mantente Actualizado",
+            "description": "Suscríbete para recibir las últimas noticias y ofertas",
+            "placeholder": "Tu correo electrónico",
+            "subscribe": "Suscribirse"
+        },
+        "copyright": "Todos los derechos reservados.",
+        "accessibility": "Accesibilidad",
+        "sitemap": "Mapa del Sitio"
+    }
+}
