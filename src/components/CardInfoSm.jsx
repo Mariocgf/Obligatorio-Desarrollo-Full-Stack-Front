@@ -1,4 +1,4 @@
-const CardInfoSm = ({elem}) => {
+const CardInfoSsm = ({elem}) => {
     return (
         <div
             key={elem._id}
@@ -21,4 +21,4 @@ const CardInfoSm = ({elem}) => {
     )
 }
 
-export default CardInfoSm;
+export default CardInfoSsm;

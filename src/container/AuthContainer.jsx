@@ -1,6 +1,6 @@
 import { useState } from "react";
-import FormLogin from "../components/FormLogin";
-import FormRegister from "../components/FormRegister";
+import FormLogin from "../components/Form/FormLogin";
+import FormRegister from "../components/Form/FormRegister";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router";
 

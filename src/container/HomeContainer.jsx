@@ -1,8 +1,9 @@
 import Hero from "../components/Hero";
-import Img from "../assets/banner.jpg";
-import Img2 from "../assets/estadistica.jpeg";
-import Img3 from "../assets/entrada.jpg";
-import Img4 from "../assets/fecha.jpg";
+import Img from "../assets/banner.webp";
+import Img2 from "../assets/estadistica.webp";
+import Img3 from "../assets/entrada.webp";
+import Img4 from "../assets/fecha.webp";
+import Img5 from "../assets/deportes.webp";
 
 import { Link } from "react-router";
 import CardImgInfoLink from "../components/Card/CardImgInfoLink";
@@ -37,10 +38,10 @@ const HomeContainer = () => {
             <section className="flex flex-col px-4 sm:px-8 md:px-20 lg:px-40 py-10 sm:py-12 md:py-16 lg:py-20 justify-between gap-8 lg:gap-4 border-b-2 border-gray-300">
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold sm:mb-8">Caracteristicas & servicios</h2>
                 <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
-                    <CardImgInfoLink imgSrc={Img2} title="Estadisticas" description="Accede a información completa sobre rendimiento de equipos y deportistas." />
+                    <CardImgInfoLink imgSrc={Img2} title="Estadisticas" description="Accede a información completa sobre rendimiento de equipos." />
                     <CardImgInfoLink imgSrc={Img3} title="Entradas" description="Compra entradas para los eventos de las distintas competiciones." />
                     <CardImgInfoLink imgSrc={Img4} title="Fechas" description="Accede a información completa sobre fechas de partidos y eventos." />
-                    <CardImgInfoLink imgSrc={Img4} title="Fechas" description="Accede a información completa sobre fechas de partidos y eventos." />
+                    <CardImgInfoLink imgSrc={Img5} title="Deportes" description="Contamos con alta variedad de competiciones y deportistas." />
                 </div>
             </section>
             <section className="flex  px-4 sm:px-8 md:px-20 lg:px-40 py-10 sm:py-12 md:py-16 lg:py-20 justify-between gap-8 lg:gap-4 border-b-2 border-gray-300">

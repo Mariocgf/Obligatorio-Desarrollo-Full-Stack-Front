@@ -5,21 +5,21 @@ import Loader from "../components/Loader";
 
 
 const EventoContainer = () => {
-    const [eventos, setEventos] = useState([]); // Estado para almacenar los eventos
-    const [loading, setLoading] = useState(true); // Estado para controlar la carga
+    const [eventos, setEventos] = useState([]);
+    const [loading, setLoading] = useState(true);
     const obtenerEventos = async () => {
-        setLoading(true); // Inicio del loading
+        setLoading(true); 
         try {
-            const response = await eventoServices.obtenerEventos(); // Llamada al servicio de eventoServices y utilizo el método obtenerEventos
-            setEventos(response.data); // Actualizo el estado con los datos obtenidos
+            const response = await eventoServices.obtenerEventos();            
+            setEventos(response.data);
         } catch (error) {
             console.error("Error al obtener eventos:", error);
         } finally {
-            setLoading(false); // Fin del loading
+            setLoading(false);
         }
     };
     useEffect(() => {
-        obtenerEventos(); // Llamo a la función para obtener los eventos cuando el componente se monta
+        obtenerEventos();
     }, []);
     if (loading) return <Loader />;
     return (
@@ -30,7 +30,7 @@ const EventoContainer = () => {
                 </h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {eventos.map((evento) => (
-                        <CardEvent key={evento._id} imgSrc={evento.img} title={evento.nombre} className={'bg-evento'} size={'w-full lg:w-full h-80 md:h-96 lg:h-120'}/>
+                        <CardEvent key={evento._id} imgSrc={evento.img} title={evento.nombre} id={evento._id} fecha={evento.fechaHora} className={'bg-evento'} size={'w-full lg:w-full h-80 md:h-96 lg:h-120'}/>
                     ))}
                 </div>
                 {eventos.length === 0 && (

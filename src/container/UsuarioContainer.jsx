@@ -61,9 +61,8 @@ const UsuarioContainer = () => {
             toast.error(error.response.data.data.message || "Error al comprar entrada");
         }
     };
-    const handleCambiarEntrada = async (data) => {
-        console.log(data);
 
+    const handleCambiarEntrada = async (data) => {
         try {
             const response = await entradaServices.cambiarEntrada(data.entrada, { evento: data.evento });
             const updatedEntradas = user.entradas.map(entrada =>
@@ -76,6 +75,7 @@ const UsuarioContainer = () => {
             toast.error(error.response.data.data.message || "Error al cambiar entrada");
         }
     };
+
     const handleActualizarPlan = async () => {
         try {
             const response = await usuarioServices.cambiarPlan();
@@ -91,7 +91,7 @@ const UsuarioContainer = () => {
         if (!entradas) return [];
         
         const ahora = new Date();
-        ahora.setHours(0, 0, 0, 0); // Resetear a medianoche para comparación exacta
+        ahora.setHours(0, 0, 0, 0);
         
         const unaSemanaAtras = new Date(ahora);
         unaSemanaAtras.setDate(ahora.getDate() - 7);
