@@ -9,8 +9,9 @@ import { cargarUsuarioInfo } from "../features/usuarioInfo.slice";
 import usuarioServices from "../service/usuario.services";
 
 const FormLogin = ({ onToggle }) => {
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: joiResolver(loginUsuarioSchema) // Aca tienes que poner el schema de registro
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm({
+        resolver: joiResolver(loginUsuarioSchema),
+        mode: 'onChange' // Valida mientras el usuario escribe
     });
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -40,10 +41,16 @@ const FormLogin = ({ onToggle }) => {
             </div>
             <div>
                 <input type="password" id="password" name="password" required className="border border-black/35 w-full rounded-md px-4 py-2" placeholder="Ingrese la contraseña" {...register("password")} />
-                <span>{errors.password && <p className="text-red-500">{errors.password.message}</p>}</span>
+                <span className="">{errors.password && <p className="text-red-500 px-4 py-2 bg-red-300 w-full rounded-md mt-2">{errors.password.message}</p>}</span>
             </div>
             <p>Aun no tienes una cuenta? <a href="#" onClick={(e) => { e.preventDefault(); onToggle(); }} className="text-blue-500 hover:underline">Regístrate</a></p>
-            <button type="submit" className="bg-gray-900 hover:bg-gray-600 cursor-pointer text-white font-bold py-2 px-4 rounded transition-all duration-300">Login</button>
+            <button 
+                type="submit" 
+                disabled={!isValid}
+                className="bg-gray-900 hover:bg-gray-600 disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer text-white font-bold py-2 px-4 rounded transition-all duration-300"
+            >
+                Login
+            </button>
         </form>
     );
 }

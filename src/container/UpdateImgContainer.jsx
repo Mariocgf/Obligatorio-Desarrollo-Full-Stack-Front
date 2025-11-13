@@ -1,12 +1,19 @@
 import { useState } from "react";
 import ButtonPrimary from "../components/Button/ButtonPrimary";
 import toast from "react-hot-toast";
+import usuarioServices from "../service/usuario.services";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { cargarUsuarioInfo } from "../features/usuarioInfo.slice";
 
 const UpdateImgContainer = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
     const [loading, setLoading] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const user = useSelector((state) => state.user.usuario);
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -73,15 +80,14 @@ const UpdateImgContainer = () => {
         try {
             // Aquí irá la lógica para subir la imagen
             const formData = new FormData();
-            formData.append('image', selectedImage);
-            
-            // Ejemplo de llamada al servicio (descomentar cuando esté disponible):
-            // const response = await usuarioServices.updateImage(formData);
-            
-            // Simulación de subida
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            formData.append('img', selectedImage);            
+            const response = await usuarioServices.updateImage(formData);
+            console.log(response);
+            const userUpdated = { ...user, img: response.data.img };
+            dispatch(cargarUsuarioInfo(userUpdated));
             
             toast.success('Imagen cargada con éxito');
+            navigate('/usuario');
             handleClear();
         } catch (error) {
             console.error('Error uploading image:', error);

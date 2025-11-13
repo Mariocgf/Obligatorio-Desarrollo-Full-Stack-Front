@@ -16,12 +16,12 @@ import entradaServices from "../service/entrada.services";
 import Form from "../components/Form/Form";
 import toast from "react-hot-toast";
 
-import { Doughnut } from 'react-chartjs-2';
 import  Grafica  from "../components/Grafica";
 
 const UsuarioContainer = () => {
     const [loading, setLoading] = useState(true);
     const [eventos, setEventos] = useState([]);
+    const [filtroFecha, setFiltroFecha] = useState('todo'); 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.user.usuario);
@@ -40,8 +40,6 @@ const UsuarioContainer = () => {
         } finally {
             setLoading(false);
         }
-        console.log(user);
-
     };
     const getEventosSelect = async () => {
         try {
@@ -78,6 +76,49 @@ const UsuarioContainer = () => {
             toast.error(error.response.data.data.message || "Error al cambiar entrada");
         }
     };
+    const handleActualizarPlan = async () => {
+        try {
+            const response = await usuarioServices.cambiarPlan();
+            const updatedUser = { ...user, plan: response.data };
+            dispatch(cargarUsuarioInfo(updatedUser));
+            toast.success("Plan actualizado con éxito");
+        } catch (error) {
+            toast.error(error.response.data.data.message || "Error al actualizar plan");
+        }
+    };
+
+    const filtrarEntradasPorFecha = (entradas) => {
+        if (!entradas) return [];
+        
+        const ahora = new Date();
+        ahora.setHours(0, 0, 0, 0); // Resetear a medianoche para comparación exacta
+        
+        const unaSemanaAtras = new Date(ahora);
+        unaSemanaAtras.setDate(ahora.getDate() - 7);
+        
+        const unMesAtras = new Date(ahora);
+        unMesAtras.setDate(ahora.getDate() - 30);
+
+        switch (filtroFecha) {
+            case 'semana':
+                return entradas.filter(entrada => {
+                    const fechaEvento = new Date(entrada.evento.fechaHora);
+                    fechaEvento.setHours(0, 0, 0, 0);
+                    return fechaEvento >= unaSemanaAtras && fechaEvento <= ahora;
+                });
+            case 'mes':
+                return entradas.filter(entrada => {
+                    const fechaEvento = new Date(entrada.evento.fechaHora);
+                    fechaEvento.setHours(0, 0, 0, 0);
+                    return fechaEvento >= unMesAtras && fechaEvento <= ahora;
+                });
+            case 'todo':
+            default:
+                return entradas;
+        }
+    };
+
+    const entradasFiltradas = filtrarEntradasPorFecha(user?.entradas);
 
     useEffect(() => {
         getUsuarioInfo();
@@ -87,26 +128,45 @@ const UsuarioContainer = () => {
     return (
         <main className="min-h-[calc(100vh-0rem)] xl:h-[calc(100vh-0rem)] pt-20 px-6 md:px-20 lg:px-40  flex flex-col overflow-hidden">
             <h1 className="text-4xl font-bold mb-4 shrink-0">Dashboard</h1>
-            <section className="grid grid-cols-1 xl:grid-cols-4 grid-rows-auto gap-4 flex-1 mb-8 min-h-0">
-                <CardProfile imgSrc={user?.img} title={`${user?.nombre} ${user?.apellido}`} size={'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-64'} />
+            <section className="grid grid-cols-1 xl:grid-cols-4 grid-rows-2 gap-4 flex-1 mb-8 min-h-0">
+                <CardProfile imgSrc={user?.img} title={`${user?.nombre} ${user?.apellido}`} size={'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-auto'} />
+
                 <BentoCard size="" title={`Plan ${user?.plan?.tipo}`}>
                     <CircularProgress current={user?.entradas?.length} total={10} premium={user?.plan?.tipo === 'Plus'} />
                     {(user?.entradas?.length === 10 && user?.plan?.tipo) === 'Plus' && (
                         <p className="text-red-600 font-semibold mt-2">Has alcanzado el límite de entradas para tu plan actual.</p>
                     )}
-                    {user?.plan?.tipo === 'Plus' && <ButtonPrimary>Actualizar Plan</ButtonPrimary>}
-
+                    {user?.plan?.tipo === 'Plus' && <ButtonPrimary onClick={handleActualizarPlan}>Actualizar Plan</ButtonPrimary>}
                 </BentoCard>
-                <CardImgInfoLink imgSrc={user?.equipoSeguido?.img || 'https://blocks.astratic.com/img/general-img-landscape.png'} title={user?.equipoSeguido?.nombre || 'Aun no sigues ningun equipo'} description={'Equipo favorito'} size={'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-64'} />
-                <CardImgInfoLink imgSrc={user?.deportistaSeguido?.img || 'https://blocks.astratic.com/img/general-img-landscape.png'} title={user?.deportistaSeguido?.nombre || 'Aun no sigues ningun deportista'} description={'Deportista favorito'} size={'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-64'} />
+                
+                <CardImgInfoLink imgSrc={user?.equipoSeguido?.img || 'https://blocks.astratic.com/img/general-img-landscape.png'} title={user?.equipoSeguido?.nombre || 'Aun no sigues ningun equipo'} description={'Equipo favorito'} size={'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-auto'} />
+
+                <CardImgInfoLink imgSrc={user?.deportistaSeguido?.img || 'https://blocks.astratic.com/img/general-img-landscape.png'} title={user?.deportistaSeguido ? `${user?.deportistaSeguido?.nombre} ${user?.deportistaSeguido?.apellido}`: 'Aun no sigues ningun deportista'} description={'Deportista favorito'} size={'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-auto '} />
+
                 <BentoCard size="" title="Entradas">
+                    <div className="mb-3">
+                        <label className="block text-sm font-medium mb-2">Filtrar por fecha:</label>
+                        <select 
+                            value={filtroFecha}
+                            onChange={(e) => setFiltroFecha(e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                            <option value="semana">Última semana</option>
+                            <option value="mes">Último mes</option>
+                            <option value="todo">Todo el histórico</option>
+                        </select>
+                    </div>
                     <div className="overflow-y-auto h-full pr-2 custom-scrollbar">
-                        <div className="grid grid-cols-1  gap-4">
-                            {user?.entradas?.map(entrada =>
+                        <div className="grid grid-cols-1 gap-4">
+                            {entradasFiltradas?.map(entrada =>
                                 <CardTicket key={entrada._id} entrada={entrada} />
                             )}
-                            {user?.entradas?.length === 0 && (
-                                <p className="text-gray-500 text-lg">No tienes entradas compradas.</p>
+                            {entradasFiltradas?.length === 0 && (
+                                <p className="text-gray-500 text-lg">
+                                    {user?.entradas?.length === 0 
+                                        ? "No tienes entradas compradas." 
+                                        : "No hay entradas en el período seleccionado."}
+                                </p>
                             )}
                         </div>
                     </div>
@@ -156,9 +216,11 @@ const UsuarioContainer = () => {
                         confirm={true}
                     />
                 </BentoCard>
+
                 <BentoCard size="" title="Estadísticas de equipo">
                     <Grafica />
                 </BentoCard>
+
             </section>
         </main>
     );

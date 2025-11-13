@@ -16,8 +16,8 @@ API.interceptors.request.use((config) => {
 });
 
 const usuarioServices = {
-    getCambiosPlan: async () => {
-        const response = await API.get('/cambio-plan');
+    cambiarPlan: async () => {
+        const response = await API.post('/cambio-plan');
         return response.data;
     },
     registerCambioPlan: async (data) => {
@@ -30,6 +30,14 @@ const usuarioServices = {
     },
     validarToken: async () => {
         const response = await API.get('/validar-token');
+        return response.data;
+    },
+    updateImage: async (formData) => {
+        const response = await API.patch('/update-img', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
         return response.data;
     }
 }

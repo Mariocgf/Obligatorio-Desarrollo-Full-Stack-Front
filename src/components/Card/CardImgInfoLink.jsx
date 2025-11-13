@@ -4,7 +4,7 @@ import ArrowUpRight from "../../assets/interface/arrow-small-right.svg?react";
 const CardImgInfoLink = ({ imgSrc, title, description, link, size }) => {
     return (
         <div className={`bg-white rounded-4xl ${size ? size : 'w-full lg:w-full h-64 sm:h-80 md:h-96 lg:h-120'} overflow-hidden relative`}>
-            <img src={imgSrc} alt="" className="w-full h-full object-cover absolute inset-0" />
+            <img src={imgSrc} alt="" className="w-full h-full object-cover absolute inset-0 object-top" />
 
 
             {link ?
